@@ -471,15 +471,21 @@
                     this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                     this.value = '';
                     this.result = '';
+                    this.isFirst = true;
                 }
                 CalculatorComponent.prototype.ngOnInit = function () {
                 };
                 CalculatorComponent.prototype.onKeyPress = function (event) {
+                    if (this.isFirst === true) {
+                        this.value = '';
+                        this.isFirst = false;
+                    }
                     this.value += event.target.value;
                 };
                 CalculatorComponent.prototype.onEqualPress = function (event) {
                     var _this = this;
                     this.cservice.getResult(this.value).subscribe(function (value1) { console.log('Received value: ', value1); _this.result = value1; _this.value = value1; }, function (error) { console.log('Error!!', error); }, function () { console.log('End of values'); });
+                    this.isFirst = true;
                 };
                 return CalculatorComponent;
             }());
@@ -510,7 +516,7 @@
             var CalculatorService = /** @class */ (function () {
                 function CalculatorService(http) {
                     this.http = http;
-                    this.calculatorUrl = 'http://localhost:8080/calculator';
+                    this.calculatorUrl = '/calculator'; //http://localhost:8080
                 }
                 CalculatorService.prototype.getResult = function (value) {
                     return this.http.get(this.calculatorUrl + "?equations=" + value);

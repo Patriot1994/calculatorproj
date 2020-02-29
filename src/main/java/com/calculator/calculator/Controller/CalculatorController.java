@@ -8,7 +8,7 @@ import java.net.URLEncoder;
 
 @RestController
 @RequestMapping
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://calculatorpatriot1994.herokuapp.com/") // http://localhost:4200
 public class CalculatorController {
     @RequestMapping(value="/calculator", method = RequestMethod.GET)
     public String calculate(@RequestParam(value = "equations",defaultValue = "0") String equations) throws UnsupportedEncodingException {

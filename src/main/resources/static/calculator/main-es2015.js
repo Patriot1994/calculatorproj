@@ -430,14 +430,20 @@ let CalculatorComponent = class CalculatorComponent {
         this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         this.value = '';
         this.result = '';
+        this.isFirst = true;
     }
     ngOnInit() {
     }
     onKeyPress(event) {
+        if (this.isFirst === true) {
+            this.value = '';
+            this.isFirst = false;
+        }
         this.value += event.target.value;
     }
     onEqualPress(event) {
         this.cservice.getResult(this.value).subscribe((value1) => { console.log('Received value: ', value1); this.result = value1; this.value = value1; }, (error) => { console.log('Error!!', error); }, () => { console.log('End of values'); });
+        this.isFirst = true;
     }
 };
 CalculatorComponent.ctorParameters = () => [
@@ -474,7 +480,7 @@ __webpack_require__.r(__webpack_exports__);
 let CalculatorService = class CalculatorService {
     constructor(http) {
         this.http = http;
-        this.calculatorUrl = 'http://localhost:8080/calculator';
+        this.calculatorUrl = '/calculator'; //http://localhost:8080
     }
     getResult(value) {
         return this.http.get(`${this.calculatorUrl}?equations=${value}`);
