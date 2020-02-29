@@ -1,6 +1,8 @@
 package com.calculator.calculator.Model;
 
-import javafx.util.Pair;
+
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,7 @@ public class Calculator {
                 operations="";
             }
 
-            return new Pair<>(signs,numbers);
+            return new MutablePair<>(signs,numbers);
         }else{
             return null;
         }
