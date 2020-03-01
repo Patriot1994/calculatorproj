@@ -17,4 +17,9 @@ public class CalculatorController {
         calculator.calculate(URLEncoder.encode(equations));
         return String.valueOf(calculator.getResult());
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "Hello there! I'm running.";
+    }
 }
