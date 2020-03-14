@@ -1,2 +1,1 @@
-JAVA_TOOL_OPTIONS = -Xmx300m
-java $JAVA_OPTS -Dserver.port=$PORT -jar target/java-cloud-sample-0.0.1-SNAPSHOT.jar
+web: java $JAVA_OPTS -jar target/calculator-0.0.1-SNAPSHOT.jar --server.port=$PORT $JAR_OPTS
